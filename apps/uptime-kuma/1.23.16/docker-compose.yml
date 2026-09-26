@@ -1,0 +1,17 @@
+services:
+  uptime-kuma:
+    # louislam/uptime-kuma:1.23.16
+    image: louislam/uptime-kuma@sha256:431fee3be822b04861cf0e35daf4beef6b7cb37391c5f26c3ad6e12ce280fe18
+    container_name: ${CONTAINER_NAME}
+    restart: always
+    networks:
+      - 1panel-network
+    ports:
+      - "${HOST_IP}:${PANEL_APP_PORT_HTTP}:3001"
+    volumes:
+      - ./data:/app/data
+    labels:
+      createdBy: "Apps"
+networks:
+  1panel-network:
+    external: true

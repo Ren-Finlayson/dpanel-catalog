@@ -1,0 +1,21 @@
+name: CyberChef
+additionalProperties:
+  key: cyberchef
+  name: CyberChef
+  tags:
+    - Security
+  shortDescEn: "The cyber swiss army knife: encoding, encryption, compression and data analysis"
+  shortDescZh: "网络瑞士军刀：编码、加密、压缩与数据分析"
+  description:
+    en: "The cyber swiss army knife: encoding, encryption, compression and data analysis"
+    zh: "网络瑞士军刀：编码、加密、压缩与数据分析"
+  type: tool
+  crossVersionUpdate: true
+  limit: 0
+  recommend: 20
+  website: https://gchq.github.io/CyberChef
+  github: https://github.com/gchq/CyberChef
+  document: https://github.com/gchq/CyberChef
+  architectures:
+    - amd64
+  memoryRequired: 64

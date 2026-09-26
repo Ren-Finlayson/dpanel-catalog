@@ -1,0 +1,22 @@
+name: IT-Tools
+additionalProperties:
+  key: it-tools
+  name: IT-Tools
+  tags:
+    - Tool
+  shortDescEn: "Handy developer utilities: encoders, converters, generators and more"
+  shortDescZh: "开发者常用工具集合：编码、转换、生成等"
+  description:
+    en: "Handy developer utilities: encoders, converters, generators and more"
+    zh: "开发者常用工具集合：编码、转换、生成等"
+  type: tool
+  crossVersionUpdate: true
+  limit: 0
+  recommend: 20
+  website: https://it-tools.tech
+  github: https://github.com/CorentinTh/it-tools
+  document: https://github.com/CorentinTh/it-tools
+  architectures:
+    - amd64
+    - arm64
+  memoryRequired: 64

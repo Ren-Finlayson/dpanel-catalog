@@ -1,0 +1,22 @@
+# Tags shown as filters in the dPanel app store. Every tag an app uses must be
+# defined here; dPanel removes tags that disappear from this list on the next sync.
+# This is the home of the catalogue taxonomy: add, rename and re-sort freely.
+tags:
+  - key: Monitoring
+    name: Monitoring
+    sort: 10
+    locales:
+      en: Monitoring
+      zh: 监控
+  - key: Tool
+    name: Tools
+    sort: 20
+    locales:
+      en: Tools
+      zh: 工具
+  - key: Security
+    name: Security
+    sort: 30
+    locales:
+      en: Security
+      zh: 安全

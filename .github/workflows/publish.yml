@@ -1,0 +1,67 @@
+name: Publish catalogue
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq minisign python3-yaml
+
+      # Every pull request must build cleanly: pinned images, known tags, complete versions.
+      - name: Validate and build
+        run: |
+          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          python3 tools/build.py --base-url "https://example.invalid" --mode stable --out /tmp/check
+
+      # Block known-critical vulnerabilities that already have a fix available.
+      - name: Scan images
+        env:
+          TRIVY_IMAGE: aquasec/trivy@sha256:26245f364b6f5d223003dc344ec1eb5eb8439052bfecb31d79aeba0c74344b3a # 0.56.2; bump deliberately
+        run: |
+          grep -rhoE 'image: *[^ ]+@sha256:[0-9a-f]{64}' apps | sed 's/image: *//' | sort -u | while read -r image; do
+            echo "::group::$image"
+            docker run --rm "$TRIVY_IMAGE" image --quiet --severity CRITICAL --ignore-unfixed --exit-code 1 "$image"
+            echo "::endgroup::"
+          done
+
+      - name: Build and sign
+        if: github.event_name != 'pull_request'
+        env:
+          CATALOG_BASE_URL: ${{ vars.CATALOG_BASE_URL }}
+          MINISIGN_SECRET_KEY: ${{ secrets.MINISIGN_SECRET_KEY }}
+        run: sh tools/publish.sh
+
+      - name: Upload site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

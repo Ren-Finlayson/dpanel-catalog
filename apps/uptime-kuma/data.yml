@@ -1,0 +1,23 @@
+name: Uptime Kuma
+additionalProperties:
+  key: uptime-kuma
+  name: Uptime Kuma
+  tags:
+    - Monitoring
+  shortDescEn: Self-hosted uptime monitoring with status pages and alerts
+  shortDescZh: 自托管的在线状态监控，支持状态页与告警
+  description:
+    en: Self-hosted uptime monitoring with status pages and alerts
+    zh: 自托管的在线状态监控，支持状态页与告警
+  type: tool
+  crossVersionUpdate: true
+  limit: 0
+  recommend: 10
+  website: https://uptime.kuma.pet
+  github: https://github.com/louislam/uptime-kuma
+  document: https://github.com/louislam/uptime-kuma/wiki
+  architectures:
+    - amd64
+    - arm64
+    - arm/v7
+  memoryRequired: 256
