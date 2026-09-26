@@ -78,7 +78,8 @@ def package_version(app_dir, key, version) -> bytes:
                 info.uid = info.gid = 0
                 info.uname = info.gname = ""
                 info.mtime = 0
-                is_exec = info.isfile() and (os.stat(full).st_mode & 0o111 or full.endswith(".sh"))
+                # Decide modes from names, not the build machine's filesystem, to stay reproducible.
+                is_exec = info.isfile() and full.endswith(".sh")
                 info.mode = 0o755 if info.isdir() or is_exec else 0o644
                 if info.isfile():
                     with open(full, "rb") as f:
