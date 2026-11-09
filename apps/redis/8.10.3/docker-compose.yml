@@ -1,0 +1,21 @@
+services:
+  redis:
+    # redis:8.10.3 (AGPLv3 / RSALv2 / SSPLv1, your choice)
+    image: redis@sha256:1f88291b4c57bdf249f02eb085a8669889b2d2954e91d4de5118a5da6b78dd53
+    restart: always
+    container_name: ${CONTAINER_NAME}
+    networks:
+      - 1panel-network
+    # Loopback only unless "External access" is ticked; apps reach it over 1panel-network.
+    ports:
+      - "${HOST_IP}:${PANEL_APP_PORT_HTTP}:6379"
+    command: redis-server /etc/redis/redis.conf ${PANEL_REDIS_ROOT_PASSWORD:+--requirepass "${PANEL_REDIS_ROOT_PASSWORD}"}
+    volumes:
+      - ./data:/data
+      - ./conf/redis.conf:/etc/redis/redis.conf
+      - ./logs:/logs
+    labels:
+      createdBy: "Apps"
+networks:
+  1panel-network:
+    external: true

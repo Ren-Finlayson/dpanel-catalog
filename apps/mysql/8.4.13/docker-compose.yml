@@ -1,0 +1,24 @@
+services:
+  mysql:
+    # mysql:8.4.13 (8.4 LTS)
+    image: mysql@sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902
+    container_name: ${CONTAINER_NAME}
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PANEL_DB_ROOT_PASSWORD}
+    networks:
+      - 1panel-network
+    # Loopback only unless "External access" is ticked; websites reach it over 1panel-network.
+    ports:
+      - "${HOST_IP}:${PANEL_APP_PORT_HTTP}:3306"
+    volumes:
+      - ./data/:/var/lib/mysql
+      - ./conf/my.cnf:/etc/my.cnf
+      - ./log:/var/log/mysql
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      createdBy: "Apps"
+networks:
+  1panel-network:
+    external: true

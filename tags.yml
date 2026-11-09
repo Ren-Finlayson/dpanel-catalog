@@ -20,3 +20,15 @@ tags:
     locales:
       en: Security
       zh: 安全
+  - key: WebServer
+    name: Web servers
+    sort: 5
+    locales:
+      en: Web servers
+      zh: Web 服务器
+  - key: Database
+    name: Databases
+    sort: 6
+    locales:
+      en: Databases
+      zh: 数据库

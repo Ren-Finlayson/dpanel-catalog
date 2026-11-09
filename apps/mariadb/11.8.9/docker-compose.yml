@@ -1,0 +1,21 @@
+services:
+  mariadb:
+    # mariadb:11.8.9 (11.8 LTS)
+    image: mariadb@sha256:c4124d1afa875e47f2892edf26b482fa54f796e2f342d3717a04ca091a22a9bd
+    container_name: ${CONTAINER_NAME}
+    restart: always
+    networks:
+      - 1panel-network
+    # Loopback only unless "External access" is ticked; websites reach it over 1panel-network.
+    ports:
+      - "${HOST_IP}:${PANEL_APP_PORT_HTTP}:3306"
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./conf/my.cnf:/etc/mysql/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PANEL_DB_ROOT_PASSWORD}
+    labels:
+      createdBy: "Apps"
+networks:
+  1panel-network:
+    external: true

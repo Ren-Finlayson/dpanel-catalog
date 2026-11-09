@@ -1,0 +1,25 @@
+name: Redis
+additionalProperties:
+  key: redis
+  name: Redis
+  tags:
+    - Database
+  shortDescEn: In-memory key-value store for caching and queues, managed from dPanel's Databases page
+  shortDescZh: 用于缓存和队列的内存键值数据库，可在 dPanel 数据库页面管理
+  description:
+    en: In-memory key-value store for caching and queues, managed from dPanel's Databases page
+    zh: 用于缓存和队列的内存键值数据库，可在 dPanel 数据库页面管理
+    zh-Hant: 用於快取和佇列的記憶體鍵值資料庫，可在 dPanel 資料庫頁面管理
+  type: runtime
+  crossVersionUpdate: false
+  limit: 0
+  recommend: 5
+  batchInstallSupport: true
+  website: https://redis.io/
+  github: https://github.com/redis/redis
+  document: https://redis.io/docs/
+  memoryRequired: 128
+  architectures:
+    - amd64
+    - arm64
+    - arm/v7

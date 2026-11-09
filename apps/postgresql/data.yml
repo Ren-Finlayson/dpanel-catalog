@@ -1,0 +1,25 @@
+name: PostgreSQL
+additionalProperties:
+  key: postgresql
+  name: PostgreSQL
+  tags:
+    - Database
+  shortDescEn: Advanced open source relational database, managed from dPanel's Databases page
+  shortDescZh: 先进的开源关系型数据库，可在 dPanel 数据库页面管理
+  description:
+    en: Advanced open source relational database, managed from dPanel's Databases page
+    zh: 先进的开源关系型数据库，可在 dPanel 数据库页面管理
+    zh-Hant: 先進的開源關聯式資料庫，可在 dPanel 資料庫頁面管理
+  type: runtime
+  crossVersionUpdate: false
+  limit: 0
+  recommend: 4
+  batchInstallSupport: true
+  website: https://www.postgresql.org/
+  github: https://github.com/postgres/postgres
+  document: https://www.postgresql.org/docs/
+  memoryRequired: 256
+  architectures:
+    - amd64
+    - arm64
+    - arm/v7

@@ -1,0 +1,24 @@
+name: MariaDB
+additionalProperties:
+  key: mariadb
+  name: MariaDB
+  tags:
+    - Database
+  shortDescEn: Community-developed MySQL-compatible database, managed from dPanel's Databases page
+  shortDescZh: 社区开发的 MySQL 兼容数据库，可在 dPanel 数据库页面管理
+  description:
+    en: Community-developed MySQL-compatible database, managed from dPanel's Databases page
+    zh: 社区开发的 MySQL 兼容数据库，可在 dPanel 数据库页面管理
+    zh-Hant: 社群開發的 MySQL 相容資料庫，可在 dPanel 資料庫頁面管理
+  type: runtime
+  crossVersionUpdate: false
+  limit: 0
+  recommend: 3
+  batchInstallSupport: true
+  website: https://mariadb.org/
+  github: https://github.com/MariaDB/server/
+  document: https://mariadb.org/documentation/
+  memoryRequired: 512
+  architectures:
+    - amd64
+    - arm64

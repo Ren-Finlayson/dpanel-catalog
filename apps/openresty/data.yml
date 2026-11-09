@@ -1,0 +1,23 @@
+name: OpenResty
+additionalProperties:
+  key: openresty
+  name: OpenResty
+  tags:
+    - WebServer
+  shortDescEn: Web server and reverse proxy (NGINX + LuaJIT) that powers dPanel Websites
+  shortDescZh: 基于 NGINX 和 LuaJIT 的 Web 服务器，dPanel 网站功能依赖它
+  description:
+    en: Web server and reverse proxy (NGINX + LuaJIT) that powers dPanel Websites
+    zh: 基于 NGINX 和 LuaJIT 的 Web 服务器，dPanel 网站功能依赖它
+    zh-Hant: 基於 NGINX 和 LuaJIT 的 Web 伺服器，dPanel 網站功能依賴它
+  type: runtime
+  crossVersionUpdate: true
+  limit: 1
+  recommend: 1
+  website: https://openresty.org
+  github: https://github.com/openresty/openresty
+  document: https://openresty.org/en/getting-started.html
+  architectures:
+    - amd64
+    - arm64
+  memoryRequired: 128

@@ -1,0 +1,28 @@
+services:
+  postgres:
+    # postgres:18.6-alpine
+    image: postgres@sha256:123b17998ccaf47e53b502e8c6a1e79afd8f579c6f3eec83c563da026f957395
+    container_name: ${CONTAINER_NAME}
+    restart: always
+    environment:
+      - POSTGRES_USER=${PANEL_DB_ROOT_USER}
+      - POSTGRES_PASSWORD=${PANEL_DB_ROOT_PASSWORD}
+    # Loopback only unless "External access" is ticked; websites reach it over 1panel-network.
+    ports:
+      - "${HOST_IP}:${PANEL_APP_PORT_HTTP}:5432"
+    volumes:
+      # PostgreSQL 18 keeps its data in a versioned folder below this mount.
+      - ./data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-p", "5432", "-q", "-U", "${PANEL_DB_ROOT_USER}"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    networks:
+      - 1panel-network
+    labels:
+      createdBy: "Apps"
+networks:
+  1panel-network:
+    external: true

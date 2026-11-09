@@ -1,0 +1,25 @@
+additionalProperties:
+  formFields:
+    - default: mariadb
+      envKey: PANEL_DB_ROOT_PASSWORD
+      labelEn: Root Password
+      labelZh: root 用户密码
+      random: true
+      required: true
+      type: password
+      label:
+        en: Root Password
+        zh: Root 用户密码
+        zh-Hant: Root 使用者密碼
+    - default: 3306
+      edit: true
+      envKey: PANEL_APP_PORT_HTTP
+      labelEn: Port
+      labelZh: 端口
+      required: true
+      rule: paramPort
+      type: number
+      label:
+        en: Port
+        zh: 端口
+        zh-Hant: 端口

@@ -1,0 +1,36 @@
+additionalProperties:
+  formFields:
+    - default: user
+      envKey: PANEL_DB_ROOT_USER
+      labelEn: Username
+      labelZh: 用户名
+      label:
+        en: Username
+        zh: 用户名
+        zh-Hant: 使用者名稱
+      random: true
+      required: true
+      rule: paramCommon
+      type: text
+    - default: password
+      envKey: PANEL_DB_ROOT_PASSWORD
+      labelEn: Password
+      labelZh: 密码
+      label:
+        en: Password
+        zh: 密码
+        zh-Hant: 密碼
+      random: true
+      required: true
+      type: password
+    - default: 5432
+      envKey: PANEL_APP_PORT_HTTP
+      labelEn: Port
+      labelZh: 端口
+      label:
+        en: Port
+        zh: 端口
+        zh-Hant: 端口
+      required: true
+      rule: paramPort
+      type: number

@@ -1,0 +1,24 @@
+name: MySQL
+additionalProperties:
+  key: mysql
+  name: MySQL
+  tags:
+    - Database
+  shortDescEn: Open source relational database, managed from dPanel's Databases page
+  shortDescZh: 开源关系型数据库，可在 dPanel 数据库页面管理
+  description:
+    en: Open source relational database, managed from dPanel's Databases page
+    zh: 开源关系型数据库，可在 dPanel 数据库页面管理
+    zh-Hant: 開源關聯式資料庫，可在 dPanel 資料庫頁面管理
+  type: runtime
+  crossVersionUpdate: false
+  limit: 0
+  recommend: 2
+  batchInstallSupport: true
+  website: https://www.mysql.com
+  github: https://github.com/mysql/mysql-server
+  document: https://dev.mysql.com/doc/
+  memoryRequired: 512
+  architectures:
+    - amd64
+    - arm64

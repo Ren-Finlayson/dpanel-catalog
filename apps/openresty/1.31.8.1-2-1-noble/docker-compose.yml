@@ -1,0 +1,27 @@
+services:
+  openresty:
+    # 1panel/openresty:1.31.8.1-2-1-noble (OpenResty 1.31.8.1, Ubuntu noble; amd64 + arm64)
+    # dPanel's Websites, SSL and module features expect this image's layout.
+    image: 1panel/openresty@sha256:41e0e0a1922ada143b29c0a9643ac5309567f9d48b9b1e676953adfc96dd0345
+    container_name: ${CONTAINER_NAME}
+    restart: always
+    # Host networking: every website gets its own ports without remapping.
+    network_mode: host
+    volumes:
+      - ./conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./conf/fastcgi_params:/usr/local/openresty/nginx/conf/fastcgi_params
+      - ./conf/fastcgi-php.conf:/usr/local/openresty/nginx/conf/fastcgi-php.conf
+      - ./conf/mime.types:/usr/local/openresty/nginx/conf/mime.types
+      - ./conf/default:/usr/local/openresty/nginx/conf/default/
+      - ./conf/ssl:/usr/local/openresty/nginx/conf/ssl/
+      - ./conf/modules-enabled:/usr/local/openresty/nginx/conf/modules-enabled/:ro
+      - ./conf/http.d:/usr/local/openresty/nginx/conf/http.d/:ro
+      - ./modules:/usr/local/openresty/nginx/modules/1panel/:ro
+      - ./log:/var/log/nginx
+      - ./root:/usr/share/nginx/html
+      - /etc/localtime:/etc/localtime:ro
+      - ${WEBSITE_DIR}:/www
+      - ${WEBSITE_DIR}/conf.d:/usr/local/openresty/nginx/conf/conf.d/
+      - ${WEBSITE_DIR}/stream.d:/usr/local/openresty/nginx/conf/stream.d/
+    labels:
+      createdBy: "Apps"

@@ -35,7 +35,7 @@ CI also scans every image with Trivy and blocks critical vulnerabilities that al
 
 Prefer apps with no default password. If an app creates its admin on first visit, say so in its README.
 
-The logos in this starter set are plain colour placeholders; replace them with each project's real icon.
+The CyberChef, IT-Tools and Uptime Kuma logos are still plain colour placeholders; replace them with each project's real icon.
 
 ## Tags
 
@@ -73,3 +73,7 @@ Each push to `main` then builds, scans, signs and publishes.
 - New host: publish to the new place and change `app_repo_url`. Signatures don't depend on the host, so nothing else changes.
 
 `tools/publish.sh` is plain shell, so the same pipeline runs on Forgejo or Gitea Actions; only the final Pages upload step is GitHub-specific.
+
+## Credits and licence
+
+The OpenResty, MySQL, MariaDB, PostgreSQL and Redis definitions are adapted from [1Panel's app store](https://github.com/1Panel-dev/appstore) (GPL-3.0): images pinned by digest, ports bound to loopback by default, a password required for Redis, the paid WAF add-on and the build-from-source context left out, and the text translated and rewritten. The catalogue is GPL-3.0, like dPanel; each app keeps its own licence.
