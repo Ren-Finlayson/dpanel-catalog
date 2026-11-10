@@ -1,0 +1,19 @@
+# Vulnerability findings the catalogue accepts, each scoped as narrowly as Trivy
+# allows and with the reason. Revisit every entry when bumping the images it covers.
+vulnerabilities:
+  # Go standard library crypto/tls certificate validation. Found only in gosu,
+  # the tiny helper the official MySQL, MariaDB and PostgreSQL images use to drop
+  # root at startup. gosu calls setuid and exec; it never opens a TLS connection,
+  # so the vulnerable code cannot run.
+  - id: CVE-2025-68121
+    paths:
+      - "usr/local/bin/gosu"
+    statement: gosu performs no TLS; vulnerable crypto/tls code is unreachable
+
+  # certifi in MySQL Shell's bundled Python (mysqlsh) still trusts the emSign roots
+  # whose intermediate keys were compromised. dPanel drives MySQL with the mysql and
+  # mysqldump clients only and never runs mysqlsh, so this CA bundle is never used.
+  - id: GHSA-6q48-6c7w-9gw2
+    paths:
+      - "usr/lib/mysqlsh/lib/python3.13/site-packages/certifi-2026.2.25.dist-info/METADATA"
+    statement: mysqlsh is not used by dPanel; its CA bundle is never loaded

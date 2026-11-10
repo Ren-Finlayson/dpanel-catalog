@@ -35,7 +35,7 @@ jobs:
         run: |
           grep -rhoE 'image: *[^ ]+@sha256:[0-9a-f]{64}' apps | sed 's/image: *//' | sort -u | while read -r image; do
             echo "::group::$image"
-            docker run --rm "$TRIVY_IMAGE" image --quiet --severity CRITICAL --ignore-unfixed --exit-code 1 "$image"
+            docker run --rm -v "$PWD/.trivyignore.yaml:/ignore.yaml:ro" "$TRIVY_IMAGE" image --quiet --severity CRITICAL --ignore-unfixed --ignorefile /ignore.yaml --exit-code 1 "$image"
             echo "::endgroup::"
           done
 

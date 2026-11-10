@@ -31,11 +31,11 @@ The build fails, and so does CI, if:
 - an app uses a tag that is not defined in `tags.yml`.
 - a version is missing `docker-compose.yml` or `data.yml`, or the app is missing `logo.png`.
 
-CI also scans every image with Trivy and blocks critical vulnerabilities that already have a fix.
+CI also scans every image with Trivy and blocks critical vulnerabilities that already have a fix. A finding that cannot affect the app can be accepted in `.trivyignore.yaml`, scoped to the exact file, with the reason written next to it.
 
 Prefer apps with no default password. If an app creates its admin on first visit, say so in its README.
 
-The CyberChef, IT-Tools and Uptime Kuma logos are still plain colour placeholders; replace them with each project's real icon.
+An app is dropped, not excused, when its newest image still has an exploitable critical vulnerability. CyberChef, IT-Tools and Uptime Kuma left the starter set for that reason; bring them back once clean images exist.
 
 ## Tags
 
